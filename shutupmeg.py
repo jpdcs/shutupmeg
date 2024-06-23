@@ -35,7 +35,9 @@ def extract_files(megmid):
         end_offset = next_start_offset if next_start_offset != -1 else len(data)
 
         file_content = data[start_offset:end_offset]
-        with open(f"{file_number}.pop", 'wb') as output_file:
+        # Constructing the file name with hexadecimal offset
+        hex_offset = hex(start_offset)[2:].zfill(8)  # Convert to hex and format to 8 characters
+        with open(f"{file_number}_{hex_offset}.pop", 'wb') as output_file:
             output_file.write(file_content)
 
         file_start_index = end_offset
